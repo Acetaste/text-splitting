@@ -11,7 +11,8 @@ def remove_characters(inputString):
                     "‡",
                     "†",
                     "ORCID",
-                    "ORCID logo"
+                    "ORCID logo",
+                    ""
                     ]
     for character in characters:
         inputString = inputString.replace(character,"")
@@ -28,7 +29,7 @@ def replace_characters_with_comma(inputString):
     return inputString
     
 def normalizes_separator(inputString):
-    inputString = inputString.replace(",",", ")
+    
     for i in range(0,10):
             inputString = inputString.replace("  "," ")
             inputString = inputString.replace(" ,",",")
@@ -36,11 +37,22 @@ def normalizes_separator(inputString):
         
     
     if inputString[len(inputString)-1] == ",":
-        inputString= inputString[:-1]
+        inputString     = inputString[:-1]
         
+    inputString         = inputString.replace(",",", ")
     
-        
+    for i in range(0,10):
+            inputString = inputString.replace("  "," ")
+            inputString = inputString.replace(" ,",",")
+            inputString = inputString.replace(",,",",")
+            
     return inputString
+    
+def trim_string(inputString):
+    processed_string    = f"".join(inputString.splitlines())
+    processed_string    = processed_string.replace(f"\n",f"")
+    processed_string    = processed_string.strip()
+    return processed_string
     
 def normalize_space(inputString):
     for i in range(0,10):
@@ -105,3 +117,9 @@ def name_split(inputString):
         
     outputString = ", ".join(outputList)
     return outputString
+
+def write_out(inputString, textWidget):
+    textWidget['state'] = 'normal'
+    textWidget.delete("1.0","end")
+    textWidget.insert(chars = inputString, index = "1.0") 
+    textWidget['state'] = 'disabled'
