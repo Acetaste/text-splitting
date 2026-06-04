@@ -32,7 +32,8 @@ def replace_callback():
         Input           = f"{StrToReplaceWith.get()}".join(Input.splitlines())
         Input           = Input.replace(f"\n",f"")
     
-    Input               = Input.replace(f"{StrToReplace.get()}",f"{StrToReplaceWith.get()}")
+    if StrToReplace.get() != "":
+        Input               = Input.replace(f"{StrToReplace.get()}",f"{StrToReplaceWith.get()}")
     
     outputtextentry.delete("1.0","end")
     outputtextentry.insert(chars = Input, index = "1.0")    
