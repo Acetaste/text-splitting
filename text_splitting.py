@@ -28,11 +28,11 @@ def switch_callback():
     write_out(input_string, outputtextentry)
     
 def replace_callback():
-    input_string                = inputtextentry.get("1.0","end")
-    processed_string            = input_string
+    processed_string            = inputtextentry.get("1.0","end")
     if BoolNewline.get():
-        processed_string        = f"{StrToReplaceWith.get()}".join(Input.splitlines())
+        processed_string        = f"{StrToReplaceWith.get()}".join(processed_string.splitlines())
         processed_string        = processed_string.replace(f"\n",f"")
+        processed_string        = processed_string.replace(f"   ",f"")
     
     if StrToReplace.get()!= "":
         processed_string        =   processed_string.replace(f"{StrToReplace.get()}",f"{StrToReplaceWith.get()}")
